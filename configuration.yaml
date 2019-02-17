@@ -58,6 +58,9 @@ weather:
     mode: daily
     api_key: !secret darksky_key
     
+    
+### Devices ###    
+    
 nest:
   client_id: !secret nest_id
   client_secret: !secret nest_key
