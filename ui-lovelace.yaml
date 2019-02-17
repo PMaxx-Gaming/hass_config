@@ -6,8 +6,6 @@ resources:
     url: >-
       https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/weather-card/weather-card.min.js
   - type: module
-    url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=1
-  - type: module
     url: /local/custom-ui/compact-custom-header/compact-custom-header.js?v=0.0.1
 title: Dashboard
 views:
