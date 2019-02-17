@@ -1,0 +1,60 @@
+###################################################
+#     Home Assistant Main Configuration File      #
+###################################################
+
+homeassistant:
+  name: Home
+  latitude: !secret location_lat
+  longitude: !secret location_long
+  elevation: !secret location_elev
+  unit_system: metric
+  time_zone: !secret location_tz
+  customize: !include customize.yaml
+  
+config:  
+
+introduction:
+
+discovery:
+
+conversation:
+
+history:
+
+logbook:
+
+map:
+
+sun:
+
+system_health:
+
+cloud:
+
+updater:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+devices: !include devices.yaml
+
+frontend:
+  themes: !include themes.yaml
+  
+http:
+    api_password: !secret http_password
+    
+tts:
+  - platform: google
+  
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://192.168.0.131:3218
+    
+weather:
+  - platform: darksky
+    mode: daily
+    api_key: !secret darksky_key

@@ -1,0 +1,46 @@
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_key
+  
+camera:
+    platform: ffmpeg
+    input: rtsp://192.168.0.135:554/onvif1
+    name: Front Door Camera
+
+sonoff:
+    username: !secret sonoff_user
+    password: !secret sonoff_pass
+    scan_interval: 10
+    grace_period: 600
+    api_region: 'us'
+    
+tuya:
+  username: !secret tuya_user
+  password: !secret tuya_pass
+  country_code: 1
+  platform: smart_life
+  
+light:
+  - platform: flux_led
+    automatic_add: true
+    
+remote:
+  - platform: harmony
+    name: Livingroom Hub
+    host: 192.168.0.111
+  - platform: harmony
+    name: Bedroom Hub
+    host: 192.168.0.112
+  - platform: harmony
+    name: Basement Hub
+    host: 192.168.0.122
+
+media_player:
+  - platform: emby
+    host: 192.168.0.124
+    api_key: !secret emby_key
+    auto_hide: true
+  - platform: alexa
+    email: !secret alexa_email
+    password: !secret alexa_pass
+    url: amazon.ca
