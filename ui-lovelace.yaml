@@ -1,12 +1,13 @@
-background: center / cover no-repeat url("/local/bg/background6.jpg") fixed
+background: center / cover no-repeat url("/local/bg/background.jpg") fixed
 resources:
   - type: module
-    url: /local/mini-media-player-bundle.js?v=1.0.1
+    url: /local/mini-media-player/mini-media-player-bundle.js?v=1.0.1
   - type: module
     url: >-
       https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/weather-card/weather-card.min.js
   - type: module
-    url: /local/custom-ui/compact-custom-header/compact-custom-header.js?v=0.0.1
+    url: >-
+      /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
 title: Dashboard
 views:
   - badges: []
@@ -84,8 +85,9 @@ views:
         type: 'custom:weather-card'
       - columns: 2
         entities:
-          - entity: group.lights
+          - entity: group.all_lights
             icon: 'mdi:lightbulb'
+            name: All Lights
             tap_action:
               action: toggle
           - entity: group.all_remotes
@@ -100,138 +102,6 @@ views:
     title: Home
   - badges: []
     cards:
-      - entity: camera.front_door_camera
-        type: picture-entity
-    icon: 'mdi:cctv'
-    title: Security Camera
-  - cards:
-      - cards:
-          - entities:
-              - entity: switch.01200209ecfabc03a885
-                icon: 'mdi:fish'
-                tap_action:
-                  action: toggle
-            show_name: true
-            show_state: false
-            type: glance
-          - entities:
-              - entity: light.01200315600194696f39
-                icon: 'mdi:lightbulb'
-                tap_action:
-                  action: toggle
-            show_name: true
-            show_state: false
-            type: glance
-          - entities:
-              - entity: light.01200823ecfabc8157e3
-                icon: 'mdi:lightbulb'
-                tap_action:
-                  action: toggle
-            show_name: true
-            show_state: false
-            type: glance
-        type: horizontal-stack
-      - cards:
-          - entities:
-              - entity: light.01200823ecfabc815d16
-                icon: 'mdi:lightbulb'
-                tap_action:
-                  action: toggle
-            show_name: true
-            show_state: false
-            type: glance
-          - entities:
-              - entity: switch.sonoff_1000277820
-                icon: 'mdi:lightbulb'
-                tap_action:
-                  action: toggle
-            show_name: true
-            show_state: false
-            type: glance
-          - entities:
-              - entity: switch.sonoff_1000280b79
-                icon: 'mdi:lightbulb'
-                tap_action:
-                  action: toggle
-            show_name: true
-            show_state: false
-            type: glance
-        type: horizontal-stack
-      - entity: group.bedroom
-        hold_action:
-          action: none
-        icon: 'mdi:lightbulb'
-        name: All Lights
-        tap_action:
-          action: toggle
-        type: entity-button
-      - cards:
-          - entity: media_player.emby_emby_theater_bedroom_mini_pc
-            hide:
-              icon: true
-              panel: false
-              power_state: true
-              source: true
-              volume: true
-            source: icon
-            type: 'custom:mini-media-player'
-          - entity: media_player.bedroom
-            hide:
-              icon: true
-            type: 'custom:mini-media-player'
-        type: vertical-stack
-      - entity: remote.bedroom_hub
-        icon: 'mdi:television-classic'
-        name: Watch TV
-        tap_action:
-          action: call-service
-          service: remote.turn_on
-          service_data:
-            activity: Watch TV
-            entity_id: remote.bedroom_hub
-        type: entity-button
-      - entity: remote.bedroom_hub
-        icon: 'mdi:desktop-classic'
-        name: Use the Computer
-        tap_action:
-          action: call-service
-          service: remote.turn_on
-          service_data:
-            activity: Bedroom Computer
-            entity_id: remote.bedroom_hub
-        type: entity-button
-      - entity: remote.bedroom_hub
-        icon: 'mdi:power'
-        name: Turn off bedroom tv
-        tap_action:
-          action: call-service
-          service: remote.turn_off
-          service_data:
-            entity_id: remote.bedroom_hub
-        type: entity-button
-    icon: 'mdi:hotel'
-    title: Bedroom
-    type: vertical-stack
-  - badges: []
-    cards:
-      - cards:
-          - entities:
-              - entity: switch.sonoff_1000280d3c
-                icon: 'mdi:lightbulb'
-                tap_action:
-                  action: toggle
-            show_name: true
-            show_state: false
-            type: glance
-        type: horizontal-stack
-      - entity: media_player.spare_bedroom
-        hide:
-          icon: true
-        type: 'custom:mini-media-player'
-    icon: 'mdi:bed-empty'
-    title: Spare Bedroom
-  - badges: []
-    cards:
       - cards:
           - entities:
               - entity: light.6001949696af_192_168_0_120
@@ -243,7 +113,7 @@ views:
             type: glance
           - entities:
               - entity: switch.01200446600194676548
-                icon: 'mdi:lightbulb'
+                icon: 'mdi:lamp'
                 tap_action:
                   action: toggle
             show_name: true
@@ -253,15 +123,15 @@ views:
       - cards:
           - entities:
               - entity: switch.012004466001946ebdcc
-                icon: 'mdi:lightbulb'
+                icon: 'mdi:floor-lamp'
                 tap_action:
                   action: toggle
             show_name: true
             show_state: false
             type: glance
           - entities:
-              - entity: switch.sonoff_10001402d0
-                icon: 'mdi:lightbulb'
+              - entity: switch.10001402d0
+                icon: 'mdi:ceiling-light'
                 tap_action:
                   action: toggle
             show_name: true
@@ -297,70 +167,214 @@ views:
             source: icon
             type: 'custom:mini-media-player'
         type: vertical-stack
-      - entity: remote.livingroom_hub
-        icon: 'mdi:television-classic'
-        name: Watch TV
-        tap_action:
-          action: call-service
-          service: remote.turn_on
-          service_data:
-            activity: Watch TV
-            entity_id: remote.livingroom_hub
-        type: entity-button
-      - entity: remote.livingroom_hub
-        icon: 'mdi:desktop-classic'
-        name: Use the Computer
-        tap_action:
-          action: call-service
-          service: remote.turn_on
-          service_data:
-            activity: The Computer
-            entity_id: remote.livingroom_hub
-        type: entity-button
-      - entity: remote.livingroom_hub
-        icon: 'mdi:emby'
-        name: Start Emby Theater
-        tap_action:
-          action: call-service
-          service: remote.turn_on
-          service_data:
-            activity: Emby Theater
-            entity_id: remote.livingroom_hub
-        type: entity-button
-      - entity: remote.livingroom_hub
+      - cards:
+          - entity: remote.livingroom_hub
+            icon: 'mdi:television-classic'
+            name: Watch TV
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                activity: Watch TV
+                entity_id: remote.livingroom_hub
+            type: entity-button
+          - entity: remote.livingroom_hub
+            icon: 'mdi:desktop-classic'
+            name: Use the Computer
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                activity: The Computer
+                entity_id: remote.livingroom_hub
+            type: entity-button
+        type: horizontal-stack
+      - cards:
+          - entity: remote.livingroom_hub
+            icon: 'mdi:emby'
+            name: Start Emby Theater
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                activity: Emby Theater
+                entity_id: remote.livingroom_hub
+            type: entity-button
+          - entity: remote.livingroom_hub
+            icon: 'mdi:power'
+            name: Turn off livingroom tv
+            tap_action:
+              action: call-service
+              service: remote.turn_off
+              service_data:
+                entity_id: remote.livingroom_hub
+            type: entity-button
+        type: horizontal-stack
+    icon: 'mdi:sofa'
+    title: Livingroom
+    type: vertical-stack
+  - cards:
+      - cards:
+          - entities:
+              - entity: switch.01200209ecfabc03a885
+                icon: 'mdi:fish'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+          - entities:
+              - entity: light.01200315600194696f39
+                icon: 'mdi:lightbulb'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+          - entities:
+              - entity: light.01200823ecfabc8157e3
+                icon: 'mdi:lamp'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+        type: horizontal-stack
+      - cards:
+          - entities:
+              - entity: light.01200823ecfabc815d16
+                icon: 'mdi:floor-lamp'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+          - entities:
+              - entity: switch.1000277820
+                icon: 'mdi:floor-lamp'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+          - entities:
+              - entity: switch.1000280b79
+                icon: 'mdi:lightbulb'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+        type: horizontal-stack
+      - cards:
+          - entity: group.bedroom
+            hold_action:
+              action: none
+            icon: 'mdi:lightbulb'
+            name: All Lights
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: vertical-stack
+      - cards:
+          - entity: media_player.emby_emby_theater_bedroom_mini_pc
+            hide:
+              icon: true
+              panel: false
+              power_state: true
+              source: true
+              volume: true
+            source: icon
+            type: 'custom:mini-media-player'
+          - entity: media_player.bedroom
+            hide:
+              icon: true
+            type: 'custom:mini-media-player'
+        type: vertical-stack
+      - cards:
+          - entity: remote.bedroom_hub
+            icon: 'mdi:television-classic'
+            name: Watch TV
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                activity: Watch TV
+                entity_id: remote.bedroom_hub
+            type: entity-button
+          - entity: remote.bedroom_hub
+            icon: 'mdi:desktop-classic'
+            name: Use the Computer
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                activity: Bedroom Computer
+                entity_id: remote.bedroom_hub
+            type: entity-button
+        type: horizontal-stack
+      - entity: remote.bedroom_hub
         icon: 'mdi:power'
-        name: Turn off livingroom tv
+        name: Turn off bedroom tv
         tap_action:
           action: call-service
           service: remote.turn_off
           service_data:
-            entity_id: remote.livingroom_hub
+            entity_id: remote.bedroom_hub
         type: entity-button
-    icon: 'mdi:sofa'
-    title: Livingroom
+    icon: 'mdi:hotel'
+    title: Bedroom
     type: vertical-stack
   - badges: []
     cards:
       - cards:
           - entities:
-              - entity: switch.sonoff_1000280c06
-                icon: 'mdi:lightbulb'
+              - entity: switch.1000280d3c
+                icon: 'mdi:floor-lamp'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+        type: horizontal-stack
+      - entity: media_player.spare_bedroom
+        hide:
+          icon: true
+        type: 'custom:mini-media-player'
+    icon: 'mdi:bed-empty'
+    title: Spare Bedroom
+  - badges: []
+    cards:
+      - cards:
+          - entities:
+              - entity: switch.1000280c06
+                icon: 'mdi:floor-lamp'
                 tap_action:
                   action: toggle
             show_name: true
             show_state: false
             type: glance
           - entities:
-              - entity: switch.sonoff_1000280a7e
-                icon: 'mdi:lightbulb'
+              - entity: switch.1000280a7e
+                icon: 'mdi:ceiling-light'
                 tap_action:
                   action: toggle
             show_name: true
             show_state: false
             type: glance
+        type: horizontal-stack
+      - cards:
           - entities:
               - entity: switch.42514300b4e62d1e2379
-                icon: 'mdi:lightbulb'
+                icon: 'mdi:billiards-rack'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+          - entities:
+              - entity: switch.10006a712e
+                icon: 'mdi:bullseye-arrow'
                 tap_action:
                   action: toggle
             show_name: true
@@ -408,6 +422,112 @@ views:
               service_data:
                 entity_id: remote.basement_hub
             type: entity-button
-        type: vertical-stack
+        type: horizontal-stack
     icon: 'mdi:theater'
     title: Basement
+  - badges: []
+    cards:
+      - cards:
+          - entities:
+              - entity: switch.10006d39cd
+                icon: 'mdi:radiator'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+          - entities:
+              - entity: switch.pool_pump
+                icon: 'mdi:fan'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+        type: horizontal-stack
+      - cards:
+          - entities:
+              - entity: switch.deck_lights
+                icon: 'mdi:lightbulb'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+          - entities:
+              - entity: switch.outdoor_speakers
+                icon: 'mdi:music'
+                tap_action:
+                  action: toggle
+            show_name: true
+            show_state: false
+            type: glance
+        type: horizontal-stack
+      - entity: sensor.converted_pool_temp
+        max: 90
+        min: 55
+        name: Pool Temperature
+        severity:
+          green: 55
+          red: 82
+          yellow: 77
+        theme: pool_temp_gauge
+        type: gauge
+        unit: °F
+    icon: 'mdi:pool'
+    path: ''
+    title: Backyard
+  - badges: []
+    cards:
+      - entities:
+          - entity: camera.composite_weather_radar
+          - entity: camera.local_weather_radar
+        show_state: false
+        title: Weather Radar
+        type: glance
+    icon: 'mdi:weather-partlycloudy'
+    title: Weather
+  - badges: []
+    cards:
+      - entity: camera.front_door_camera
+        type: picture-entity
+    icon: 'mdi:cctv'
+    panel: true
+    title: Security Camera
+  - badges: []
+    cards:
+      - entity: sensor.speedtest_download
+        max: 7
+        min: 0
+        name: Download Speed
+        severity:
+          green: 0
+          red: 5.5
+          yellow: 4.5
+        theme: speedtest_gauge
+        type: gauge
+      - entity: sensor.speedtest_upload
+        max: 1.5
+        min: 0
+        name: Upload Speed
+        severity:
+          green: 0
+          red: 0.75
+          yellow: 0.5
+        theme: speedtest_gauge
+        type: gauge
+      - entities:
+          - entity: sensor.speedtest_ping
+        show_header_toggle: false
+        type: entities
+      - entity: switch.update_speedtest
+        hold_action:
+          action: none
+        icon: 'mdi:speedometer'
+        tap_action:
+          action: call-service
+          service: ''
+        theme: Backend-selected
+        type: entity-button
+    icon: 'mdi:speedometer'
+    title: Speedtest
