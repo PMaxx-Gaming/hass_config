@@ -1,81 +1,57 @@
-###################################################
-#     Home Assistant Main Configuration File      #
-###################################################
-
 homeassistant:
   name: Home
-  latitude: !secret location_lat
-  longitude: !secret location_long
-  elevation: !secret location_elev
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
   unit_system: metric
-  time_zone: !secret location_tz
+  time_zone: !secret timezone
   customize: !include customize.yaml
-
-group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
-sensor: !include sensors.yaml
-  
-config:  
-
+default_config:
 introduction:
-
 discovery:
-
-conversation:
-
-history:
-
-logbook:
-
-map:
-
-sun:
-
-system_health:
-
-cloud:
-
-updater:
-
+recorder:
+  purge_interval: 2
+  purge_keep_days: 5
 frontend:
   themes: !include themes.yaml
-  
 http:
-    api_password: !secret http_password
-    
-tts:
-  - platform: google
-  
+  base_url: !secret base_url
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  api_password: !secret api_password
+
 panel_iframe:
   configurator:
     title: Configurator
     icon: mdi:wrench
-    url: http://192.168.0.131:3218
+    url: !secret config_url
     
+light: !include lights.yaml 
+sensor: !include sensors.yaml
+switch: !include switches.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
 weather:
   - platform: darksky
     mode: daily
     api_key: !secret darksky_key
-    
-    
-### Devices ###    
     
 nest:
   client_id: !secret nest_id
   client_secret: !secret nest_key
   
 camera:
-    platform: ffmpeg
-    input: rtsp://192.168.0.135:554/onvif1
+  - platform: ffmpeg
+    input: rtsp://192.168.0.136:554/onvif1
     name: Front Door Camera
-
-sonoff:
-    username: !secret sonoff_user
-    password: !secret sonoff_pass
-    scan_interval: 10
-    grace_period: 600
-    api_region: 'us'
+  - platform: generic
+    still_image_url: 'https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=WKR&brand=wui&num=10&delay=50&type=C0R&frame=0&scale=1&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=1&lightning=0&smooth=1&rand=25884941&lat=0&lon=0&label=you'
+    name: Local Weather Radar
+  - platform: generic
+    still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/cadillac-michigan-region-current-radar-animation.gif'
+    name: Composite Weather Radar
     
 tuya:
   username: !secret tuya_user
@@ -83,9 +59,10 @@ tuya:
   country_code: 1
   platform: smart_life
   
-light:
-  - platform: flux_led
-    automatic_add: true
+sonoff:
+  username: !secret sonoff_user
+  password: !secret sonoff_pass
+  api_region: 'us'
     
 remote:
   - platform: harmony
@@ -103,7 +80,43 @@ media_player:
     host: 192.168.0.124
     api_key: !secret emby_key
     auto_hide: true
-  - platform: alexa
-    email: !secret alexa_email
-    password: !secret alexa_pass
-    url: amazon.ca
+    
+alexa_media:
+  accounts:
+    - email: !secret amazon_user
+      password: !secret amazon_password
+      url: amazon.ca
+
+tts:
+  - platform: google
+
+emulated_hue:
+  expose_by_default: false
+  entities:
+    light.alexa_virtual:
+      name: "Emulated Hue Bulb"
+      hidden: false
+ 
+    
+speedtestdotnet:
+  scan_interval:
+    days: 0
+    hours: 0
+    minutes: 30
+    seconds: 0
+    milliseconds: 0
+    
+notify:
+  - name: lucy_doorbell
+    platform: smtp
+    server: smtp-mail.outlook.com
+    port: 587
+    sender: !secret lucy_email
+    username: !secret lucy_email
+    password: !secret lucy_password
+    recipient:
+      - !secret email_recip1
+      - !secret email_recip2
+    sender_name: Lucy
+  - platform: alexa_media
+    name: alexa_media
