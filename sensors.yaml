@@ -1,20 +1,46 @@
-# Weather prediction
+- platform: yr
+
 - platform: darksky
   api_key: !secret darksky_key
   forecast:
     - 1
   monitored_conditions:
-    - summary
     - icon
-    - temperature
-    - wind_bearing
-    - apparent_temperature
-    - temperature_min
-    - temperature_max
+    - summary
+    - nearest_storm_distance
+    - nearest_storm_bearing
     - humidity
-    - precip_probability
-    - precip_intensity
-    - precip_type
+    - temperature
+    - temperature_high
+    - temperature_low
+    - apparent_temperature
+    - apparent_temperature_high
+    - apparent_temperature_low
     - wind_speed
     - wind_bearing
+    - precip_type
+    - precip_probability
+    - precip_accumulation
+    - precip_intensity
+    - precip_intensity_max
+    - uv_index
+    - daily_summary
     - pressure
+    - visibility
+  update_interval:
+    minutes: 5
+    
+- platform: template
+  sensors:
+    converted_pool_temp:
+      value_template: "{{ ((states('sensor.sonoff_10006d39cd_temperature') | float) * 1.8) + 32 }}"
+
+- platform: template
+  sensors:
+    last_alexa:
+      entity_id:
+        - media_player.bedroom
+        - media_player.spare_bedroom
+        - media_player.basement
+      value_template: >
+        {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
