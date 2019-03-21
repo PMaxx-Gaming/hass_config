@@ -1,0 +1,28 @@
+- platform: template
+  switches:
+    pool_pump:
+      value_template: ""
+      friendly_name: Pool Pump
+      turn_on:
+      turn_off:
+- platform: template
+  switches:
+    deck_lights:
+      value_template: ""
+      friendly_name: Pool Deck Lights
+      turn_on:
+      turn_off:
+- platform: template
+  switches:
+    outdoor_speakers:
+      value_template: ""
+      friendly_name: Outdoor Speakers
+      turn_on:
+      turn_off:
+- platform: template
+  switches:
+    update_speedtest:
+      value_template: ""
+      friendly_name: Update Speedtest
+      turn_on:
+      turn_off:

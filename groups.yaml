@@ -1,0 +1,47 @@
+all_lights:
+  name: All Lights
+  entities:
+    - light.01200315600194696f39
+    - light.01200823ecfabc8157e3
+    - light.01200823ecfabc815d16
+    - light.6001949696af_192_168_0_120
+    - switch.01200446600194676548
+    - switch.012004466001946ebdcc
+    - switch.10001402d0
+    - switch.1000277820
+    - switch.1000280a7e
+    - switch.1000280b79
+    - switch.1000280c06
+    - switch.1000280d3c
+    - switch.10006a712e
+    - switch.42514300b4e62d1e2379
+   
+bedroom:
+  name: Bedroom
+  entities:
+    - light.01200315600194696f39
+    - light.01200823ecfabc8157e3
+    - light.01200823ecfabc815d16
+    - switch.1000277820
+    - switch.1000280b79
+
+spare_bedroom:
+  name: Spare Bedroom
+  entities:
+    - switch.1000280d3c
+
+livingroom:
+  name: Livingroom
+  entities:
+    - light.6001949696af_192_168_0_120
+    - switch.01200446600194676548
+    - switch.012004466001946ebdcc
+    - switch.10001402d0
+    
+basement:
+  name: Basement
+  entities:
+    - switch.1000280a7e
+    - switch.1000280c06
+    - switch.10006a712e
+    - switch.42514300b4e62d1e2379

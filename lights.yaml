@@ -1,0 +1,11 @@
+- platform: flux_led
+  automatic_add: true
+- platform: template
+  lights:
+    alexa_virtual:
+      friendly_name: "Alexa Dummy Light"
+      turn_on:
+
+      turn_off:
+
+      set_level:

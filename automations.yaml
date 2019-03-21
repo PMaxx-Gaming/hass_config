@@ -1,0 +1,58 @@
+- id: lucy_doorbell
+  alias: Lucy's Doorbell TTS
+  trigger:
+  - entity_id: switch.10006abf86
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+   - service: tts.google_say
+     entity_id: media_player.living_room_speaker
+     data:
+       message: 'It sounds like Lucy wants to go outside!'
+   - service: media_player.alexa_tts
+     entity_id: media_player.bedroom
+     data:
+       message: 'It sounds like Lucy wants to go outside!'
+   - service: media_player.alexa_tts
+     entity_id: media_player.basement
+     data:
+       message: 'It sounds like Lucy wants to go outside!'
+       
+- id: lucy_doorbell_sms
+  alias: Lucy's Doorbell SMS
+  trigger:
+  - entity_id: switch.10006abf86
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+    service: notify.lucy_doorbell
+    data:
+      title: WOOF!
+      message: "Lucy is letting you know that she wants outside!"
+      
+- id: emulated_hue_bulb
+  alias: Emulated Hue Bulb
+  trigger:
+  - entity_id: light.alexa_virtual
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: alexa_media.update_last_called
+  - delay: 00:00:01
+  - data_template:
+      entity_id: '{{ states.sensor.last_alexa.state }}'
+      message:  >-
+        {% if (states.light.alexa_virtual.attributes.brightness | int / 255 * 100 ) | round  == 1 %}
+          The current temperature is {{states('sensor.converted_pool_temp')|replace('.', ' point ') }} degrees
+        {% elif (states.light.alexa_virtual.attributes.brightness | int / 255 * 100 ) | round  == 2 %}
+          Say something here...
+        {% else %}
+         {{ states('light.alexa_virtual.attributes.brightness') }}
+        {% endif %}
+    service: media_player.alexa_tts
+  - service: homeassistant.turn_off
+    entity_id: light.alexa_virtual
