@@ -526,8 +526,10 @@ views:
         icon: 'mdi:speedometer'
         tap_action:
           action: call-service
-          service: ''
+          service: speedtestdotnet.speedtest
         theme: Backend-selected
         type: entity-button
+      - entity: sensor.speedtest_last_updated
+        type: sensor
     icon: 'mdi:speedometer'
     title: Speedtest
