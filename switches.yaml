@@ -1,28 +1,45 @@
 - platform: template
   switches:
     pool_pump:
-      value_template: ""
+      value_template: "{{ is_state('switch.pool_pump', 'on') }}"
       friendly_name: Pool Pump
       turn_on:
+        service: switch.turn_on
+        entity_id: switch.pool_pump
       turn_off:
+        service: switch.turn_off
+        entity_id: switch.pool_pump
 - platform: template
   switches:
     deck_lights:
-      value_template: ""
+      value_template: "{{ is_state('switch.deck_lights', 'on') }}"
       friendly_name: Pool Deck Lights
       turn_on:
+        service: switch.turn_on
+        entity_id: switch.deck_lights
       turn_off:
+        service: switch.turn_off
+        entity_id: switch.deck_lights
 - platform: template
   switches:
     outdoor_speakers:
-      value_template: ""
+      value_template: "{{ is_state('switch.outdoor_speakers', 'on') }}"
       friendly_name: Outdoor Speakers
       turn_on:
+        service: switch.turn_on
+        entity_id: switch.outdoor_speakers
       turn_off:
+        service: switch.turn_off
+        entity_id: switch.outdoor_speakers
 - platform: template
   switches:
     update_speedtest:
-      value_template: ""
+      value_template: "{{ is_state('switch.update_speedtest', 'on') }}"
       friendly_name: Update Speedtest
       turn_on:
+      - service: switch.turn_on
+        entity_id: switch.update_speedtest
+        
       turn_off:
+        service: switch.turn_off
+        entity_id: switch.update_speedtest
