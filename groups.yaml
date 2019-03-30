@@ -15,6 +15,7 @@ all_lights:
     - switch.1000280d3c
     - switch.10006a712e
     - switch.42514300b4e62d1e2379
+    - light.c44f338194d1_192_168_0_138
    
 bedroom:
   name: Bedroom
@@ -37,6 +38,7 @@ livingroom:
     - switch.01200446600194676548
     - switch.012004466001946ebdcc
     - switch.10001402d0
+    - light.c44f338194d1_192_168_0_138
     
 basement:
   name: Basement
