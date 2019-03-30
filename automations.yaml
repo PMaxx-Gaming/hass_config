@@ -32,8 +32,8 @@
       title: WOOF!
       message: "Lucy is letting you know that she wants outside!"
       
-- id: emulated_hue_bulb
-  alias: Emulated Hue Bulb
+- id: emulated_hue_alexa
+  alias: Emulated Hue Bulb Alexa
   trigger:
   - entity_id: light.alexa_virtual
     from: 'off'
@@ -49,10 +49,33 @@
         {% if (states.light.alexa_virtual.attributes.brightness | int / 255 * 100 ) | round  == 1 %}
           The current temperature is {{states('sensor.converted_pool_temp')|replace('.', ' point ') }} degrees
         {% elif (states.light.alexa_virtual.attributes.brightness | int / 255 * 100 ) | round  == 2 %}
-          Say something here...
+          The current download speed is {{states('sensor.speedtest_download')|replace('.', ' point ') }} mega bits per second
         {% else %}
          {{ states('light.alexa_virtual.attributes.brightness') }}
         {% endif %}
     service: media_player.alexa_tts
   - service: homeassistant.turn_off
     entity_id: light.alexa_virtual
+    
+#- id: google_virtual_bulb
+#  alias: Google Virtual Bulb
+#  trigger:
+#  - entity_id: light.google_virtual
+#    from: 'off'
+#    platform: state
+#    to: 'on'
+#  condition: []
+#  action:
+#  - service: tts.google_say
+#    entity_id: media_player.living_room_speaker
+#    data_template:
+#      message:  >-
+#        {% if (states.light.google_virtual.attributes.brightness | int / 255 * 100 ) | round  == 1 %}
+#          The current temperature is {{states('sensor.converted_pool_temp')|replace('.', ' point ') }} degrees
+#        {% elif (states.light.google_virtual.attributes.brightness | int / 255 * 100 ) | round  == 2 %}
+#          The current download speed is {{states('sensor.speedtest_download')|replace('.', ' point ') }} mega bits per second
+#        {% else %}
+#         {{ states('light.google_virtual.attributes.brightness') }}
+#        {% endif %}
+#  - service: homeassistant.turn_off
+#    entity_id: light.google_virtual
