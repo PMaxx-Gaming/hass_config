@@ -7,7 +7,6 @@ homeassistant:
   time_zone: !secret timezone
   customize: !include customize.yaml
 default_config:
-introduction:
 discovery:
 recorder:
   purge_interval: 2
@@ -96,7 +95,18 @@ emulated_hue:
     light.alexa_virtual:
       name: "Emulated Hue Bulb"
       hidden: false
- 
+
+google_assistant:
+  project_id: !secret google_id
+  api_key: !secret google_api
+  expose_by_default: false
+  entity_config:
+    script.google_pool_temp:
+      expose: true
+      name: Pool Temperature
+    script.google_internet_speed:
+      expose: true
+      name: Internet Speed
     
 speedtestdotnet:
   scan_interval:
