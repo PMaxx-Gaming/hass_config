@@ -17,10 +17,6 @@ views:
                 type: thermostat
               - entity: camera.front_door_camera
                 type: picture-entity
-              - entities:
-                  - entity: person.patrick_mcenaney
-                  - entity: person.chelsea_crowe
-                type: glance
             type: vertical-stack
           - cards:
               - columns: 1
