@@ -12,11 +12,11 @@ title: Dashboard
 views:
   - cards:
       - cards:
-          - clock_format: '12'
+          - type: 'custom:compact-custom-header'
+            clock_format: '12'
             menu: overflow
             notifications: hide
             options: clock
-            type: 'custom:compact-custom-header'
             voice: overflow      
           - cards:
               - entity: climate.living_room
