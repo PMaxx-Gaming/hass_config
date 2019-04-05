@@ -6,23 +6,21 @@ resources:
     url: >-
       https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/weather-card/weather-card.min.js
   - url: >-
-      /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
+      /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=1.0.2b8
     type: module
 title: Dashboard
 views:
   - cards:
       - cards:
-          - type: 'custom:compact-custom-header'
-            clock_format: '12'
-            menu: overflow
-            notifications: hide
-            options: clock
-            voice: overflow      
           - cards:
               - entity: climate.living_room
                 type: thermostat
               - entity: camera.front_door_camera
                 type: picture-entity
+              - entities:
+                  - entity: person.patrick
+                  - entity: person.chelsea
+                type: glance
             type: vertical-stack
           - cards:
               - columns: 1
@@ -70,6 +68,13 @@ views:
                     tap_action:
                       action: toggle
                 type: glance
+              - type: 'custom:compact-custom-header'
+                clock_format: '12'
+                menu: overflow
+                notifications: hide
+                options: clock
+                voice: overflow
+                main_config: true
             type: vertical-stack
         type: horizontal-stack
     badges: []
@@ -184,6 +189,7 @@ views:
                     type: entity-button
                 type: vertical-stack
             type: vertical-stack
+          - type: 'custom:compact-custom-header'
         type: horizontal-stack
     icon: 'mdi:sofa'
     panel: true
@@ -294,12 +300,13 @@ views:
                     type: entity-button
                 type: vertical-stack
             type: vertical-stack
+          - type: 'custom:compact-custom-header'
         type: horizontal-stack
     icon: 'mdi:hotel'
     panel: true
     title: Bedroom
   - badges: []
-    cards:  
+    cards:
       - cards:
           - entities:
               - entity: switch.1000280d3c
@@ -310,6 +317,7 @@ views:
             show_name: true
             show_state: false
             type: glance
+          - type: 'custom:compact-custom-header'
         type: horizontal-stack
       - entity: media_player.spare_bedroom
         hide:
@@ -394,6 +402,7 @@ views:
                     entity_id: remote.basement_hub
                 type: entity-button
             type: vertical-stack
+          - type: 'custom:compact-custom-header'
         type: horizontal-stack
     icon: 'mdi:theater'
     panel: true
@@ -419,6 +428,7 @@ views:
             type: glance
         type: horizontal-stack
       - cards:
+          - type: 'custom:compact-custom-header'
           - entities:
               - entity: switch.deck_lights
                 icon: 'mdi:lightbulb'
@@ -452,6 +462,7 @@ views:
     title: Backyard
   - badges: []
     cards:
+      - type: 'custom:compact-custom-header'
       - entities:
           - entity: camera.composite_weather_radar
           - entity: camera.local_weather_radar
@@ -469,6 +480,7 @@ views:
     title: Security Camera
   - badges: []
     cards:
+      - type: 'custom:compact-custom-header'
       - entity: sensor.speedtest_download
         max: 7
         min: 0
@@ -506,3 +518,44 @@ views:
         type: sensor
     icon: 'mdi:speedometer'
     title: Speedtest
+  - cards:
+      - type: 'custom:compact-custom-header'
+      - cards:
+          - entities:
+              - entity: person.patrick
+              - entity: person.chelsea
+            type: glance
+        type: horizontal-stack
+      - cards:
+          - entity: sensor.patricks_phone_battery
+            max: 100
+            min: 0
+            severity:
+              green: 0
+              red: 40
+              yellow: 15
+            theme: speedtest_gauge
+            type: gauge
+          - entity: sensor.iphone_battery_level
+            max: 100
+            min: 0
+            name: Chelsea's Phone Battery
+            severity:
+              green: 0
+              red: 40
+              yellow: 15
+            theme: speedtest_gauge
+            type: gauge
+        type: horizontal-stack
+    icon: 'mdi:account-multiple'
+  - cards:
+      - cards:
+          - type: map
+            entities:
+              - entity: person.chelsea
+              - entity: person.patrick
+              - entity: zone.home
+          - type: 'custom:compact-custom-header'
+        type: vertical-stack
+    panel: true
+    icon: 'mdi:map'
