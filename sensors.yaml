@@ -27,7 +27,7 @@
     - daily_summary
     - pressure
     - visibility
-  update_interval:
+  scan_interval:
     minutes: 5
     
 - platform: template
@@ -50,3 +50,10 @@
     speedtest_last_updated:
       friendly_name: "Last Updated"
       value_template: "{{ as_timestamp(states.sensor.speedtest_download.last_updated) | timestamp_custom('%I:%M %p %Z') }}"
+      
+- platform: template
+  sensors:
+    patricks_phone_battery:
+      friendly_name: "Patrick's Phone Battery"
+      value_template: "{{states.device_tracker.google_maps_105061153431673582287.attributes.battery_level | round}}"
+      unit_of_measurement: "%"
