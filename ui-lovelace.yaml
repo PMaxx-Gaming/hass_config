@@ -5,12 +5,13 @@ resources:
   - type: module
     url: >-
       https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/weather-card/weather-card.min.js
-  - url: >-
+  - type: module
+    url: >-
       /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=1.0.2b8
-    type: module
 title: Dashboard
 views:
-  - cards:
+  - badges: []
+    cards:
       - cards:
           - cards:
               - entity: climate.living_room
@@ -18,8 +19,8 @@ views:
               - entity: camera.front_door_camera
                 type: picture-entity
               - entities:
-                  - entity: person.patrick
-                  - entity: person.chelsea
+                  - entity: person.patrick_mcenaney
+                  - entity: person.chelsea_crowe
                 type: glance
             type: vertical-stack
           - cards:
@@ -68,16 +69,15 @@ views:
                     tap_action:
                       action: toggle
                 type: glance
-              - type: 'custom:compact-custom-header'
-                clock_format: '12'
+              - clock_format: '12'
+                main_config: true
                 menu: overflow
                 notifications: hide
                 options: clock
+                type: 'custom:compact-custom-header'
                 voice: overflow
-                main_config: true
             type: vertical-stack
         type: horizontal-stack
-    badges: []
     icon: 'mdi:home'
     panel: true
   - badges: []
@@ -238,6 +238,14 @@ views:
                   action: none
                 icon: 'mdi:lightbulb'
                 name: Toggle All Lights
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: switch.night_light_switch
+                hold_action:
+                  action: none
+                icon: 'mdi:power-sleep'
+                name: Night Lights
                 tap_action:
                   action: toggle
                 type: entity-button
@@ -550,12 +558,12 @@ views:
     icon: 'mdi:account-multiple'
   - cards:
       - cards:
-          - type: map
-            entities:
+          - entities:
               - entity: person.chelsea
               - entity: person.patrick
               - entity: zone.home
+            type: map
           - type: 'custom:compact-custom-header'
         type: vertical-stack
-    panel: true
     icon: 'mdi:map'
+    panel: true
