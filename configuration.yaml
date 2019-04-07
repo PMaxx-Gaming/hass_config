@@ -8,11 +8,20 @@ homeassistant:
   customize: !include customize.yaml
 default_config:
 discovery:
+  ignore:
+    - igd
+ios:
+device_tracker:
+  - platform: google_maps
+    username: !secret google_maps_user
+    password: !secret google_maps_pass
+    max_gps_accuracy: 200
 recorder:
   purge_interval: 2
   purge_keep_days: 5
 frontend:
   themes: !include themes.yaml
+  javascript_version: latest
 http:
   base_url: !secret base_url
   ssl_certificate: /ssl/fullchain.pem
@@ -31,6 +40,7 @@ switch: !include switches.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+zone: !include zones.yaml
 
 weather:
   - platform: darksky
@@ -44,6 +54,10 @@ nest:
 camera:
   - platform: ffmpeg
     input: rtsp://192.168.0.136:554/onvif1
+#  - platform: onvif
+#    host: 192.168.0.136
+#  - platform: mjpeg
+#    mjpeg_url: http://192.168.0.136/videostream.cgi?user=[username]]&pwd=[password]]&resolution=32&rate=0
     name: Front Door Camera
   - platform: generic
     still_image_url: 'https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=WKR&brand=wui&num=10&delay=50&type=C0R&frame=0&scale=1&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=1&lightning=0&smooth=1&rand=25884941&lat=0&lon=0&label=you'
