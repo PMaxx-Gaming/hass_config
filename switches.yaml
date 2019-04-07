@@ -43,3 +43,58 @@
       turn_off:
         service: switch.turn_off
         entity_id: switch.update_speedtest
+- platform: template
+  switches:
+    livingroom_lights:
+      value_template: "{{ is_state('group.livingroom', 'on') }}"
+      friendly_name: Livingroom Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.livingroom
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.livingroom
+- platform: template
+  switches:
+    bedroom_lights:
+      value_template: "{{ is_state('group.bedroom', 'on') }}"
+      friendly_name: Bedroom Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.bedroom
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.bedroom
+- platform: template
+  switches:
+    spare_bedroom_lights:
+      value_template: "{{ is_state('group.spare_bedroom', 'on') }}"
+      friendly_name: Spare Bedroom Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.spare_bedroom
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.spare_bedroom
+- platform: template
+  switches:
+    basement_lights:
+      value_template: "{{ is_state('group.basement', 'on') }}"
+      friendly_name: Basement Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.basement
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.basement
+- platform: template
+  switches:
+    night_light_switch:
+      value_template: "{{ is_state('switch.night_light_switch', 'on') }}"
+      friendly_name: Night Lights
+      turn_on:
+        service: switch.turn_on
+        entity_id: switch.night_light_switch
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.night_light_switch        
