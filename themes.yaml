@@ -1,6 +1,6 @@
-midnight:
+pmaxx:
 # Main colors
-  primary-color: '#494949'                                                        # Header
+  primary-color: '#063e56'                                                        # Header (494949)
   accent-color: '#273a5e'                                                         # Accent color
   dark-primary-color: 'var(--accent-color)'                                       # Hyperlinks                                         
   light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
