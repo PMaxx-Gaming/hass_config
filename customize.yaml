@@ -1,8 +1,24 @@
 light.6001949696af_192_168_0_120:
   friendly_name: Couch Light
-  
 light.01200315600194696f39:
   friendly_name: TV Light
-  
 light.c44f338194d1_192_168_0_138:
   friendly_name: Livingroom TV Light
+group.bedroom:
+  friendly_name: Bedroom Lights
+  icon: mdi:lightbulb
+group.spare_bedroom:
+  friendly_name: Spare Room Lights
+  icon: mdi:lightbulb
+group.livingroom:
+  friendly_name: Livingroom Lights
+  icon: mdi:lightbulb
+group.basement:
+  friendly_name: Basement Lights
+  icon: mdi:lightbulb
+person.patrick:
+  entity_picture: /local/img/patrick.png
+person.chelsea:
+  entity_picture: /local/img/chelsea.png
+switch.1000280a7e:
+  device_id: 1000280a7e
