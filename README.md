@@ -2,7 +2,6 @@
 **Pertinent files from my Home Assistant config**<br/><br/>
 :warning: **This does not include all files necessary to have my configuration working, just the important ones; everything else should be customized to suit your individual setup** :warning:
 
-Screenshots are out of date, updating those is on my to-do list.
 
 <br/><br/>
 
