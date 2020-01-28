@@ -1,0 +1,80 @@
+- platform: yr
+
+- platform: uptime
+  name: Days since last restart
+  unit_of_measurement: days
+
+- platform: darksky
+  api_key: !secret darksky_key
+  forecast:
+    - 1
+  monitored_conditions:
+    - icon
+    - summary
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - humidity
+    - temperature
+    - temperature_high
+    - temperature_low
+    - apparent_temperature
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - wind_speed
+    - wind_bearing
+    - precip_type
+    - precip_probability
+    - precip_accumulation
+    - precip_intensity
+    - precip_intensity_max
+    - uv_index
+    - daily_summary
+    - pressure
+    - visibility
+  scan_interval:
+    minutes: 5
+    
+- platform: deluge
+  host: 192.168.1.240
+  username: !secret deluge_user
+  password: !secret deluge_pass
+  monitored_variables:
+    - 'current_status'
+    - 'download_speed'
+    - 'upload_speed'
+    
+- platform: template
+  sensors:
+    converted_pool_temp:
+      value_template: "{{ (((states('sensor.hac1_temp') | float) * 1.8) + 32) | round(2) }}"
+
+- platform: template
+  sensors:
+    last_alexa:
+      entity_id:
+        - media_player.bedroom
+        - media_player.spare_bedroom
+        - media_player.basement
+        - media_player.garage
+        - media_player.echo_show
+      value_template: >
+        {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+        
+- platform: template
+  sensors:
+    speedtest_last_updated:
+      friendly_name: "Last Updated"
+      value_template: "{{ as_timestamp(states.sensor.speedtest_download.last_updated) | timestamp_custom('%I:%M %p %Z') }}"
+      
+- platform: template
+  sensors:
+    patricks_phone_battery:
+      friendly_name: "Patrick's Phone Battery"
+      value_template: "{{states.device_tracker.patricks_phone.attributes.battery_level | round}}"
+      unit_of_measurement: "%"
+      
+- platform: template 
+  sensors:
+    patrick_speed:
+      friendly_name: "Patrick's Speed"
+      value_template: "{{states.device_tracker.patricks_phone.attributes.speed | round}}"

@@ -1,0 +1,6 @@
+- platform: mqtt
+  name: "Front Door Camera Motion"
+  state_topic: blue_iris/binary_sensor/fdc_motion/state
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: motion

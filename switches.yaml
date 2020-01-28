@@ -1,0 +1,138 @@
+- platform: deluge
+  host: 192.168.1.240
+  username: !secret deluge_user
+  password: !secret deluge_pass
+
+- platform: template
+  switches:
+    service_mode:
+      value_template: "{{ is_state('input_boolean.service_mode', 'on') }}"
+      friendly_name: Service Mode
+      turn_on:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.service_mode
+      turn_off:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.service_mode
+        
+- platform: template
+  switches:
+    pool_heater_thermostat:
+      value_template: "{{ is_state('climate.pool_temperature', 'heat') }}"
+      friendly_name: Pool Thermostat
+      turn_on:
+      - service: climate.turn_on
+        entity_id: climate.pool_temperature
+      turn_off:
+      - service: climate.turn_off
+        entity_id: climate.pool_temperature
+        
+- platform: template
+  switches:
+    pool_pump_timer:
+      value_template: "{{ is_state('group.poolpumptimer', 'on') }}"
+      friendly_name: Pump Timer
+      turn_on:
+      - service: homeassistant.turn_on
+        entity_id: group.poolpumptimer
+      turn_off:
+      - service: homeassistant.turn_off
+        entity_id: group.poolpumptimer
+      
+- platform: template
+  switches:
+    update_speedtest:
+      value_template: "{{ is_state('switch.update_speedtest', 'on') }}"
+      friendly_name: Update Speedtest
+      turn_on:
+      - service: switch.turn_on
+        entity_id: switch.update_speedtest
+        
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.update_speedtest
+        
+- platform: template
+  switches:
+    livingroom_lights:
+      value_template: "{{ is_state('group.livingroom', 'on') }}"
+      friendly_name: Livingroom Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.livingroom
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.livingroom
+        
+- platform: template
+  switches:
+    bedroom_lights:
+      value_template: "{{ is_state('group.bedroom', 'on') }}"
+      friendly_name: Bedroom Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.bedroom
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.bedroom   
+        
+- platform: template
+  switches:
+    garage_lights:
+      value_template: "{{ is_state('group.garage', 'on') }}"
+      friendly_name: Garage Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.garage
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.garage
+        
+- platform: template
+  switches:
+    spare_bedroom_lights:
+      value_template: "{{ is_state('group.nursery', 'on') }}"
+      friendly_name: Nursery Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.nursery
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.nursery
+        
+- platform: template
+  switches:
+    basement_lights:
+      value_template: "{{ is_state('group.basement', 'on') }}"
+      friendly_name: Basement Lights
+      turn_on:
+        service: homeassistant.turn_on
+        entity_id: group.basement
+      turn_off:
+        service: homeassistant.turn_off
+        entity_id: group.basement
+        
+- platform: template
+  switches:
+    hass_restart:
+      value_template: "{{ is_state('switch.hass_restart', 'on') }}"
+      friendly_name: Restart Home Assistant
+      turn_on:
+      - service: switch.turn_on
+        entity_id: switch.hass_restart
+        
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.hass_restart
+        
+- platform: template
+  switches:
+    alarm_toggle:
+      value_template: "{{ is_state('input_boolean.alarm_toggle', 'on') }}"
+      friendly_name: Alarm Toggle Switch
+      turn_on:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.alarm_toggle
+      turn_off:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.alarm_toggle

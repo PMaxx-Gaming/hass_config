@@ -1,0 +1,73 @@
+lights_all:
+  name: All Lights
+  entities:
+    - light.bedroom_tv_light              #TV Light
+    - light.dresser_light                 #Dresser Light
+    - light.lamp                          #Lamp
+    - light.corner_light                  #Corner Light
+    - light.6001949696af_192_168_0_120    #Couch Light
+    - light.c44f338194d1_192_168_0_110    #Livingroom TV Light
+    - light.end_table_light_1             #End Table Light 1
+    - light.end_table_light_2             #End Table Light 2
+    - light.corner_lamp_1                 #Corner Lamp 1
+    - light.corner_lamp_2                 #Corner Lamp 2
+    - switch.pool_table_light             #Pool Table Light
+    - switch.sonoff_10001402d0            #Chandelier
+    - switch.sonoff_1000280b79            #Fairy Lights
+    - light.nursery                       #Nursery Light
+    - switch.sonoff_1000280c06            #Basement Lamp
+    - switch.sonoff_1000280a7e            #Bar Light
+    - switch.sonoff_10006a712e            #Dartboard Light
+    - switch.workbench_light              #Workbench Light
+    - switch.sonoff_1000a02089            #Front Door Light
+ 
+all_remotes:
+  name: All TV's
+  entities:
+    - remote.livingroom_hub
+    - remote.bedroom_hub
+    - remote.basement_hub
+   
+bedroom:
+  name: Bedroom
+  entities:
+    - light.bedroom_tv_light              #TV Light
+    - light.dresser_light                 #Dresser Light
+    - light.lamp                          #Lamp
+    - light.corner_light                  #Corner Light
+    - switch.sonoff_1000280b79            #Fairy Lights
+
+nursery:
+  name: Nursery
+  entities:
+    - light.nursery                       #Nursery Light
+
+livingroom:
+  name: Livingroom
+  entities:
+    - light.6001949696af_192_168_0_120    #Couch Light
+    - light.c44f338194d1_192_168_0_110    #Livingroom TV Light
+    - light.end_table_light_1             #End Table Light 1
+    - light.end_table_light_2             #End Table Light 2
+    - light.corner_lamp_1                 #Corner Lamp 1
+    - light.corner_lamp_2                 #Corner Lamp 2
+    - switch.sonoff_10001402d0            #Chandelier
+    
+basement:
+  name: Basement
+  entities:
+    - switch.sonoff_1000280c06            #Basement Lamp
+    - switch.sonoff_1000280a7e            #Bar Light
+    - switch.sonoff_10006a712e            #Dartboard Light
+    - switch.pool_table_light             #Pool Table Light
+    
+garage:
+  name: Garage
+  entities:
+    - switch.workbench_light         #Workbench Light
+
+poolpumptimer:
+  name: Pool Pump Timer
+  entities:
+    - automation.pool_pump_timer_on
+    - automation.pool_pump_timer_off

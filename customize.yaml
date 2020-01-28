@@ -1,0 +1,52 @@
+light.6001949696af_192_168_1_182:
+  friendly_name: Couch Light
+light.01200315600194696f39:
+  friendly_name: TV Light
+light.c44f338194d1_192_168_1_202:
+  friendly_name: Livingroom TV Light
+group.bedroom:
+  friendly_name: Bedroom Lights
+  icon: mdi:lightbulb
+group.nursery:
+  friendly_name: Nursery Lights
+  icon: mdi:lightbulb
+group.livingroom:
+  friendly_name: Livingroom Lights
+  icon: mdi:lightbulb
+group.garage:
+  friendly_name: Garage Lights
+  icon: mdi:lightbulb
+group.basement:
+  friendly_name: Basement Lights
+  icon: mdi:lightbulb
+person.patrick_mcenaney:
+  entity_picture: /local/img/patrick.png
+person.chelsea_crowe:
+  entity_picture: /local/img/chelsea.png
+switch.sonoff_1000280a7e:
+  device_id: 1000280a7e
+switch.sonoff_10005b5ac9_1:
+  friendly_name: Pool Pump
+switch.sonoff_10005b5ac9_3:
+  friendly_name: Power to Deck Lights
+switch.sonoff_10005b5ac9_2:
+  friendly_name: Waterfall
+switch.sonoff_10005b5ac9_4:
+  friendly_name: Auxiliary
+media_player.backyard_speaker:
+  friendly_name: Google Home Mini
+media_player.patrick_s_echo_show:
+  friendly_name: Echo Show
+media_player.patrick_s_echo_dot:
+  friendly_name: Echo Dot
+light.dc4f22f77058_192_168_1_162:
+  friendly_name: Deck Lights
+switch.deluge_switch:
+  friendly_name: Pause/Resume Torrents
+  icon: mdi:play-pause
+climate.pool_temperature:
+  unit_of_measurement: 'Fahrenheit'
+sensor.hac1_wifi_signal:
+  unit_of_measurement: 'dBm'
+sensor.alarm_panel_wifi_signal:
+  unit_of_measurement: 'dBm'

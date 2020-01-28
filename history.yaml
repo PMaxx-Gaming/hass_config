@@ -1,0 +1,99 @@
+use_include_order: true
+include:
+  entities:
+########### MISC ############
+    - alarm_control_panel.home_alarm
+    - sensor.alarm_panel_wifi_signal
+    - person.chelsea_crowe
+    - sensor.iphone_battery_level
+    - person.patrick_mcenaney
+    - sensor.patricks_phone_battery
+    - sensor.converted_pool_temp
+    - sensor.deluge_down_speed
+    - sensor.deluge_up_speed
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+    - sensor.days_since_last_restart
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_wind_speed
+    - switch.sonoff_1000a02089
+
+######## LIVINGROOM #########
+    - group.livingroom
+    - binary_sensor.livingroom_motion
+    - sensor.living_room_thermostat_humidity
+    - sensor.living_room_thermostat_temperature
+    - sensor.living_room_thermostat_hvac_state
+    - media_player.living_room_speaker
+    - media_player.patrick_s_echo_show
+    - remote.livingroom_hub
+    - media_player.emby_emby_theater_hellspawn
+    - light.6001949696af_192_168_1_182
+    - light.c44f338194d1_192_168_1_202
+    - light.corner_lamp_1
+    - light.corner_lamp_2
+    - light.end_table_light_1
+    - light.end_table_light_2
+    - switch.sonoff_10001402d0
+
+########## BEDROOM ##########
+    - group.bedroom
+    - binary_sensor.bedroom_motion
+    - sensor.bedroom_humidity
+    - sensor.bedroom_temperature
+    - media_player.bedroom
+    - remote.bedroom_hub
+    - media_player.bedroom_tv
+    - media_player.emby_theater_bedroom
+    - switch.fish_feeder
+    - switch.fish_tank
+    - light.corner_light
+    - light.dresser_light
+    - light.lamp
+    - switch.sonoff_1000280b79
+
+########## NURSERY ########## 
+    - group.nursery
+    - binary_sensor.nursery_motion
+    - sensor.nursery_humidity
+    - sensor.nursery_temperature
+    - media_player.nursery
+    - light.nursery_light
+
+######### BASEMENT ##########
+    - group.basement
+    - media_player.basement
+    - remote.basement_hub
+    - media_player.emby_androidtv_t95zplus
+    - switch.pool_table_light
+    - switch.sonoff_1000280a7e
+    - switch.sonoff_1000280c06
+    - switch.sonoff_10006a712e
+
+########## GARAGE ###########
+    - group.garage
+    - binary_sensor.front_door_camera_motion
+    - media_player.patrick_s_echo_dot
+    - media_player.fire_tv_stick
+    - media_player.emby_androidtv_fire_tv_stick
+    - switch.garage_fan
+    - switch.workbench_light
+
+######### BACKYARD ##########
+    - media_player.backyard_speaker
+    - switch.pool_pump_timer
+    - switch.hac1_software_switch_1
+    - switch.hac1_software_switch_2
+    - switch.hac1_channel_1
+    - switch.hac1_channel_2
+    - switch.hac1_channel_3
+    - switch.hac1_channel_4
+    - switch.hac1_channel_5
+    - switch.hac1_channel_6
+    - switch.hac1_channel_7
+    - switch.hac1_channel_8
+    - sensor.hac1_wifi_signal
+    - sensor.converted_pool_temp
+

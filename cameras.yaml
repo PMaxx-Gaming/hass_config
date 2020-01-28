@@ -1,0 +1,23 @@
+#- platform: ring
+#- platform: generic
+#  name: Bedroom Camera
+#  still_image_url: "http://192.168.1.180:81/image/bedroomcam"
+#  stream_source: "http://192.168.1.180:81/h264/bedroomcam/temp.m3u8"
+- platform: generic
+  name: Front Door Camera
+  still_image_url: "http://192.168.1.180:81/image/frontdoorcam"
+  stream_source: "http://192.168.1.180:81/h264/frontdoorcam/temp.m3u8"
+- platform: generic
+  name: Backyard Camera
+  still_image_url: "http://192.168.1.180:81/image/backyardcam"
+  stream_source: "http://192.168.1.180:81/h264/backyardcam/temp.m3u8"
+- platform: generic
+  name: Livingroom Camera
+  still_image_url: "http://192.168.1.180:81/image/livingroomcam"
+  stream_source: "http://192.168.1.180:81/h264/livingroomcam/temp.m3u8"
+- platform: generic
+  name: Local Weather Radar
+  still_image_url: 'https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=WKR&brand=wui&num=10&delay=50&type=C0R&frame=0&scale=1&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=1&lightning=0&smooth=1&rand=25884941&lat=0&lon=0&label=you'
+- platform: generic
+  name: Composite Weather Radar
+  still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/cadillac-michigan-region-current-radar-animation.gif'
