@@ -68,8 +68,8 @@ views:
               - entity: weather.dark_sky
                 type: 'custom:weather-card'
               - entities:
-                  - entity: person.patrick_mcenaney
-                  - entity: person.chelsea_crowe
+                  - entity: person.patrick
+                  - entity: person.chelsea
                 type: glance
               - clock_format: '12'
                 main_config: true
@@ -745,8 +745,8 @@ views:
       - type: 'custom:compact-custom-header'
       - cards:
           - entities:
-              - entity: person.patrick_mcenaney
-              - entity: person.chelsea_crowe
+              - entity: person.patrick
+              - entity: person.chelsea
             type: glance
         type: horizontal-stack
       - cards:
@@ -774,8 +774,8 @@ views:
   - cards:
       - cards:
           - entities:
-              - entity: person.chelsea_crowe
-              - entity: person.patrick_mcenaney
+              - entity: person.chelsea
+              - entity: person.patrick
               - entity: zone.home
             type: map
           - type: 'custom:compact-custom-header'
