@@ -77,9 +77,9 @@
         {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 20 %}
           The current download speed is {{states('sensor.speedtest_download')|replace('.', ' point ') }} mega bits per second
         {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 30 %}
-          Chelsea is {{states('person.chelsea_crowe')}} right now
+          Chelsea is {{states('person.chelsea')}} right now
         {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 40 %}
-          Patrick is {{states('person.patrick_mcenaney')}} right now 
+          Patrick is {{states('person.patrick')}} right now 
         {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 50 %}
           All torrent downloads have been resumed   
         {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 60 %}
@@ -98,7 +98,7 @@
 
 - alias: "Chelsea home boolean"
   trigger:
-  - entity_id: person.chelsea_crowe
+  - entity_id: person.chelsea
     platform: state
     from: 'not_home' 
     to: 'home' 
@@ -108,7 +108,7 @@
   
 - alias: "Chelsea away boolean"  
   trigger:
-  - entity_id: person.chelsea_crowe
+  - entity_id: person.chelsea
     platform: state
     from: 'home' 
     to: 'not_home' 
@@ -145,7 +145,7 @@
     
 - alias: "Patrick is home"
   trigger:
-  - entity_id: person.patrick_mcenaney
+  - entity_id: person.patrick
     from: 'not_home' 
     platform: state
     to: 'home' 
@@ -172,8 +172,8 @@
   trigger:
   - platform: zone
     event: leave
-    zone: zone.trading_post
-    entity_id: person.chelsea_crowe
+    zone: zone.chelsea_work
+    entity_id: person.chelsea
   action:
   - service: notify.alexa_media
     data:
