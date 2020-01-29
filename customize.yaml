@@ -19,9 +19,9 @@ group.garage:
 group.basement:
   friendly_name: Basement Lights
   icon: mdi:lightbulb
-person.patrick_mcenaney:
+person.patrick:
   entity_picture: /local/img/patrick.png
-person.chelsea_crowe:
+person.chelsea:
   entity_picture: /local/img/chelsea.png
 switch.sonoff_1000280a7e:
   device_id: 1000280a7e
