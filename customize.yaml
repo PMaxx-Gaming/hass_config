@@ -25,14 +25,6 @@ person.chelsea:
   entity_picture: /local/img/chelsea.png
 switch.sonoff_1000280a7e:
   device_id: 1000280a7e
-switch.sonoff_10005b5ac9_1:
-  friendly_name: Pool Pump
-switch.sonoff_10005b5ac9_3:
-  friendly_name: Power to Deck Lights
-switch.sonoff_10005b5ac9_2:
-  friendly_name: Waterfall
-switch.sonoff_10005b5ac9_4:
-  friendly_name: Auxiliary
 media_player.backyard_speaker:
   friendly_name: Google Home Mini
 media_player.patrick_s_echo_show:
@@ -50,3 +42,13 @@ sensor.hac1_wifi_signal:
   unit_of_measurement: 'dBm'
 sensor.alarm_panel_wifi_signal:
   unit_of_measurement: 'dBm'
+sensor.garage_door:
+  friendly_name: Garage Door
+sensor.front_door:
+  friendly_name: Front Door
+sensor.nursery_door:
+  friendly_name: Nursery Door
+sensor.dark_sky_temperature:
+  friendly_name: Outdoor Temperature
+sensor.dark_sky_humidity:
+  friendly_name: Outdoor Humidity
