@@ -1,0 +1,41 @@
+- alias: "ALEXA - Report"
+  trigger:
+  - platform: state
+    entity_id: light.dummy_light
+    to: 'on'
+  condition:
+  action:
+  - service: alexa_media.update_last_called
+  - delay: 00:00:01
+  - service: notify.alexa_media
+    data_template:
+      target: 
+        -  '{{ states.sensor.last_alexa.state }}' 
+      data:
+        type: tts
+      message: >-
+        {% if (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 10 %}
+          The current pool temperature is {{states('sensor.converted_pool_temp')|replace('.', ' point ') }} degrees
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 20 %}
+          The current download speed is {{states('sensor.speedtest_download')|replace('.', ' point ') }} mega bits per second
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 30 %}
+          Chelsea is {{states('person.chelsea')}} right now
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 40 %}
+          Patrick is {{states('person.patrick')}} right now 
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 50 %}
+          All torrent downloads have been resumed   
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 60 %}
+          All torrent downloads have been paused      
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 70 %}
+          The temperature in the nursery is {{states('sensor.temperature_nursery')|replace('.', ' point ') }} degrees
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 80 %}
+          The temperature in the bedroom is {{states('sensor.temperature_bedroom')|replace('.', ' point ') }} degrees
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 90 %}
+          The temperature in the basement is {{states('sensor.temperature_basement')|replace('.', ' point ') }} degrees
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 100 %}
+          The temperature in the garage is {{states('sensor.temperature_garage')|replace('.', ' point ') }} degrees
+        {% else %}
+         {{ states('light.dummy_light.attributes.brightness') }}
+        {% endif %}
+  - service: light.turn_off
+    entity_id: light.dummy_light

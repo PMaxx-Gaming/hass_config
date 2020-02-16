@@ -1,0 +1,16 @@
+- alias: "ALEXA - Deluge Switch"
+  trigger:
+  - platform: state
+    entity_id: light.dummy_light
+    to: 'on'
+  condition:
+  action:
+  - service_template: >-
+        {% if (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 50 %}      
+          switch.turn_on
+        {% elif (states.light.dummy_light.attributes.brightness | int / 255 * 100 ) | round  == 60 %}
+          switch.turn_off
+        {% else %}
+          script.dummy
+        {% endif %}
+    entity_id: switch.deluge_switch
