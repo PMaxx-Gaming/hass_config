@@ -1,0 +1,44 @@
+esphome:
+  name: garage_temp
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret wifi
+  password: !secret wifi_pass
+  manual_ip:
+    static_ip: 192.168.1.208
+    gateway: 10.0.0.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Garage Temp Fallback Hotspot"
+    password: !secret fallback_pass
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret password
+
+ota:
+  password: !secret password
+  
+sensor:
+  - platform: dht
+    pin: D1
+    temperature:
+      name: "Garage Temperature"
+    humidity:
+      name: "Garage Humidity"
+    update_interval: 15s
+    
+#binary_sensor:
+#  - platform: gpio
+#    pin: D2
+#    name: "Garage Motion"
+#    device_class: motion
