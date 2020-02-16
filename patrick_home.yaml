@@ -1,0 +1,26 @@
+- alias: "PATRICK - Is Home"
+  trigger:
+  - entity_id: person.patrick
+    from: 'not_home' 
+    platform: state
+    to: 'home' 
+  condition:
+  - after: '08:00:00'
+    before: '22:00:00'
+    condition: time
+  action:
+    - service: tts.google_say
+      data:
+        message: It looks like Patrick is home now
+      entity_id:
+        - media_player.living_room_speaker
+        - media_player.backyard_speaker
+    - service: notify.alexa_media
+      data:
+        target: 
+          - media_player.bedroom
+          - media_player.basement
+          - media_player.garage
+        data:
+          type: tts
+        message: "It looks like Patrick is home now."
