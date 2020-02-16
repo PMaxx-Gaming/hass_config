@@ -2,19 +2,12 @@ homeassistant:
   customize: !include customize.yaml
   auth_providers:
    - type: homeassistant
-   - type: trusted_networks
-     trusted_networks:
-        - 192.168.1.1
         
 default_config:
 discovery:
   ignore:
     - igd
     
-zha:
-  usb_path: /dev/ttyUSB1
-  database_path: /config/zigbee.db
-  
 climate:
   - platform: generic_thermostat
     name: Pool Temperature
@@ -44,14 +37,14 @@ sensor: !include sensors.yaml
 switch: !include switches.yaml
 input_boolean: !include input_boolean.yaml
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 zone: !include zones.yaml
 camera: !include cameras.yaml
-recorder: !include recorder.yaml
 history: !include history.yaml
 binary_sensor: !include binary_sensor.yaml
 stream:
+recorder:
 
 weather:
   - platform: darksky
@@ -61,10 +54,6 @@ weather:
 nest:
   client_id: !secret nest_id
   client_secret: !secret nest_key
-  
-#ring:
-#  username: !secret ring_user
-#  password: !secret ring_pass
 
 tuya:
   username: !secret tuya_user
@@ -95,7 +84,6 @@ media_player:
   - platform: emby
     host: 192.168.1.240
     api_key: !secret emby_key
-    auto_hide: true
 
 tts:
   - platform: google_translate
@@ -110,17 +98,17 @@ emulated_hue:
       name: "Dummy Light"
       hidden: false
       
-#google_assistant:
-#  project_id: !secret google_id
-#  api_key: !secret google_api
-#  expose_by_default: false
-#  entity_config:
-#    script.google_pool_temp:
-#      expose: true
-#      name: Pool Temperature
-#    script.google_internet_speed:
-#      expose: true
-#      name: Internet Speed
+google_assistant:
+  project_id: !secret google_id
+  service_account: !include My Project-1cf41535cd7b.json
+  expose_by_default: false
+  entity_config:
+    script.google_pool_temp:
+      expose: true
+      name: Pool Temperature
+    script.google_internet_speed:
+      expose: true
+      name: Internet Speed
     
 speedtestdotnet:
   scan_interval:
@@ -143,6 +131,7 @@ notify:
       - !secret email_recip2
     sender_name: Lucy
   - platform: alexa_media
+    name: alexa_media
   
 alarm_control_panel:
   - platform: manual
@@ -162,4 +151,8 @@ alarm_control_panel:
       
 timer:
   5_seconds:
-    duration: '00:00:05'      
+    duration: '00:00:05'   
+    
+spotify:
+  client_id: !secret spotify_id
+  client_secret: !secret spotify_secret    
