@@ -15,11 +15,12 @@ lights_all:
     - switch.sonoff_10001402d0            #Chandelier
     - switch.sonoff_1000280b79            #Fairy Lights
     - light.nursery                       #Nursery Light
-    - switch.sonoff_1000280c06            #Basement Lamp
     - switch.sonoff_1000280a7e            #Bar Light
     - switch.sonoff_10006a712e            #Dartboard Light
     - switch.workbench_light              #Workbench Light
     - switch.sonoff_1000a02089            #Front Door Light
+    - light.basement_lamp                 #Basement Lamp
+    - light.hallway_light                 #Downstairs Hallway Light
  
 all_remotes:
   name: All TV's
@@ -56,10 +57,11 @@ livingroom:
 basement:
   name: Basement
   entities:
-    - switch.sonoff_1000280c06            #Basement Lamp
     - switch.sonoff_1000280a7e            #Bar Light
     - switch.sonoff_10006a712e            #Dartboard Light
     - switch.pool_table_light             #Pool Table Light
+    - light.basement_lamp                 #Basement Lamp
+    - light.hallway_light                 #Downstairs Hallway Light
     
 garage:
   name: Garage
