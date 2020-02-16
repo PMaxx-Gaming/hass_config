@@ -1,0 +1,11 @@
+- alias: "LUCY - Doorbell SMS"
+  trigger:
+  - entity_id: switch.10006abf86
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+    service: notify.lucy_doorbell
+    data:
+      title: WOOF!
+      message: Lucy is letting you know that she wants outside!

@@ -1,0 +1,22 @@
+- alias: "LUCY - Doorbell TTS"
+  trigger:
+  - entity_id: switch.10006abf86
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: notify.alexa_media
+    data_template:
+      target: 
+        - media_player.bedroom
+        - media_player.basement
+        - media_player.basement
+        - media_player.echo_show
+      data:
+        type: tts
+      message: It sounds like Lucy wants to go outside!
+  - service: tts.google_say
+    data:
+      message: It sounds like Lucy wants to come outside!
+    entity_id:
+      - media_player.backyard_speaker
