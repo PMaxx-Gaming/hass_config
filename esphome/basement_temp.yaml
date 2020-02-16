@@ -1,0 +1,33 @@
+esphome:
+  name: basement_temp
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret wifi
+  password: !secret wifi_pass
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Basement Temp Fallback Hotspot"
+    password: !secret fallback_pass
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: dht
+    pin: D1
+    temperature:
+      name: "Basement Temperature"
+    humidity:
+      name: "Basement Humidity"
+    update_interval: 15s
+    model: DHT22
