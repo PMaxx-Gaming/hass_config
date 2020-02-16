@@ -1,0 +1,25 @@
+- alias: "POOL - Thermostat-ON from HA"
+  trigger:
+  - platform: state
+    entity_id: switch.pool_heater_thermostat
+    to: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.poolpumptimer
+        - switch.hac1_software_switch_3
+    - service: switch.turn_on
+      entity_id:
+      - switch.hac1_channel_1
+      
+- alias: "POOL - Thermostat-OFF from HA"
+  trigger:
+  - platform: state
+    entity_id: switch.pool_heater_thermostat
+    to: 'off'
+  action:
+    - delay: '00:01:30'
+    - service: homeassistant.turn_on
+      entity_id:
+        - group.poolpumptimer
+        - switch.hac1_software_switch_3

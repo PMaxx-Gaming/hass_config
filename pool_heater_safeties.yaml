@@ -1,0 +1,26 @@
+- alias: "POOL - Heater off with Pump-OFF and Timer-ON"
+  trigger:
+  - platform: state
+    entity_id: switch.hac1_channel_1
+    to: 'off'
+  - platform: state
+    entity_id: group.poolpumptimer
+    to: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.hac1_channel_2
+        - switch.hac1_software_switch_1
+
+- alias: "POOL - Pump-ON with Heater-ON"
+  trigger:
+  - platform: state
+    entity_id: switch.hac1_channel_2
+    to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.hac1_channel_1
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.poolpumptimer
+        - switch.hac1_software_switch_3

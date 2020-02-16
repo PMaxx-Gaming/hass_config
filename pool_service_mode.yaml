@@ -1,0 +1,36 @@
+- alias: "POOL - Service Mode ON"
+  trigger:
+  - entity_id: switch.hac1_software_switch_2
+    platform: state
+    to: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id:
+      - switch.hac1_channel_1
+      - switch.hac1_channel_2
+      - switch.hac1_channel_3
+      - switch.hac1_channel_4
+      - switch.hac1_channel_5
+      - switch.hac1_channel_6
+      - switch.hac1_channel_7
+      - switch.hac1_channel_8
+      - switch.hac1_software_switch_1
+      - switch.pool_heater_thermostat
+    - service: homeassistant.turn_off
+      entity_id:
+      - group.poolpumptimer
+      - switch.hac1_software_switch_3
+      
+- alias: "POOL - Service Mode OFF"
+  trigger:
+  - entity_id: switch.hac1_software_switch_2
+    platform: state
+    to: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+      - group.poolpumptimer
+      - switch.hac1_software_switch_3
+    - service: switch.turn_on
+      entity_id:
+      - switch.hac1_channel_1

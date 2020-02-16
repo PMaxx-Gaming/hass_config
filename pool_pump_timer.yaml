@@ -1,0 +1,35 @@
+- alias: "POOL - Pump Timer ON"
+  trigger:
+    - platform: time
+      at: '23:00:00'
+    - platform: time
+      at: '05:00:00'
+    - platform: time
+      at: '10:00:00'
+    - platform: time
+      at: '13:00:00'
+    - platform: time
+      at: '17:00:00'
+    - platform: time
+      at: '20:00:00'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.hac1_channel_1
+      
+- alias: "POOL - Pump Timer OFF"
+  trigger:
+    - platform: time
+      at: '02:00:00'
+    - platform: time
+      at: '07:00:00'
+    - platform: time
+      at: '11:00:00'
+    - platform: time
+      at: '15:00:00'
+    - platform: time
+      at: '18:00:00'
+    - platform: time
+      at: '21:00:00'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.hac1_channel_1

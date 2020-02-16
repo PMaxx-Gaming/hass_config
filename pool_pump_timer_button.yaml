@@ -1,0 +1,19 @@
+- alias: "POOL - Pump Timer-ON from panel"
+  trigger:
+  - entity_id: switch.hac1_software_switch_3
+    platform: state
+    to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id:
+      - switch.pool_pump_timer
+
+- alias: "POOL - Pump Timer-OFF from panel"
+  trigger:
+  - entity_id: switch.hac1_software_switch_3
+    platform: state
+    to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id:
+      - switch.pool_pump_timer
