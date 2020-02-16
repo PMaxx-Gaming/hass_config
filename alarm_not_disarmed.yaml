@@ -1,0 +1,10 @@
+- alias: "ALARM - State changes from Disarmed"
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      from: 'disarmed'
+  action:
+    - service: input_boolean.turn_on
+      entity_id:
+        - input_boolean.alarm_toggle_ha
+        - input_boolean.alarm_toggle_keypad

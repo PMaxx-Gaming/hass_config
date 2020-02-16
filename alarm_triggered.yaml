@@ -1,0 +1,35 @@
+- alias: "ALARM - Triggered"      
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'triggered'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.livingroom
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.living_room_speaker
+        volume_level: 1   
+    - delay: '00:00:01'  
+    - service: tts.google_say
+      data:
+        message: An intruder has been detected
+      entity_id:
+       - media_player.living_room_speaker
+    - delay: '00:00:02'
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_livingroom
+    - service: media_player.play_media
+      data_template:
+        entity_id: media_player.living_room_speaker
+        media_content_id: !secret alarm_sound
+        media_content_type: music      
+    - service: notify.mobile_app_patrick_s_phone
+      data: 
+        message: "An intruder has been detected!"
+        title: "! ! ALERT ! !"
+        data: 
+          android:
+            notification:
+              image: !secret frontdoor_snapshot

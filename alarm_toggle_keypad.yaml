@@ -1,0 +1,21 @@
+- alias: 'ALARM - Activated from Keypad'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alarm_toggle_keypad
+      to: 'on'
+  action:
+    service: alarm_control_panel.alarm_arm_away
+    data: !secret toggle_alarm
+    
+       
+- alias: 'ALARM - Deactivated from Keypad'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alarm_toggle_keypad
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.alarm_toggle_switch
+      to: 'off'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data: !secret toggle_alarm

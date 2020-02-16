@@ -1,0 +1,28 @@
+- alias: 'ALARM - Panic Mode'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.panic_mode_keypad
+      to: 'on'
+  action:
+    - service: input_boolean.turn_on
+      entity_id:
+        - input_boolean.alarm_toggle_switch
+    - service: homeassistant.turn_off
+      entity_id: group.livingroom
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.living_room_speaker
+        volume_level: 1   
+    - delay: '00:00:01'
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_livingroom
+    - service: media_player.play_media
+      data_template:
+        entity_id: media_player.living_room_speaker
+        media_content_id: !secret alarm_sound
+        media_content_type: music 
+    - delay: '00:10:00'
+    - service: input_boolean.turn_off
+      entity_id:
+        - input_boolean.alarm_toggle_switch

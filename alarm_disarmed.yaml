@@ -1,0 +1,44 @@
+- alias: "ALARM - Disarmed"      
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'disarmed'
+    - platform: state
+      entity_id: input_boolean.alarm_toggle_switch
+      to: 'off'
+  action:
+    - service: media_player.media_stop
+      data_template:
+        entity_id: media_player.living_room_speaker 
+    - service: script.turn_off
+      data:
+        entity_id: script.flash_livingroom
+    - service: script.turn_off
+      data:
+        entity_id: script.flash_loop
+    - delay: '00:00:01'   
+    - service: tts.google_say
+      data:
+        message: The alarm has been disabled
+      entity_id:
+       - media_player.living_room_speaker
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Livingroom"
+        scene_name: "Relax"  
+    - delay: '00:00:02'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.living_room_speaker
+        volume_level: 0.2
+    - service: light.turn_off
+      entity_id: light.livingroom
+    - service: switch.turn_off
+      entity_id: switch.alarm_toggle
+    - service: input_boolean.turn_off
+      entity_id:
+        - input_boolean.alarm_toggle_ha
+        - input_boolean.alarm_toggle_keypad
+        - input_boolean.panic_mode_keypad
+        - input_boolean.alarm_toggle_switch
+        - input_boolean.panic_mode_keypad
