@@ -1,0 +1,446 @@
+esphome:
+  name: pmaxx81hac_1
+  platform: ESP32
+  board: lolin_d32
+
+wifi:
+  ssid: !secret wifi
+  password: !secret wifi_pass
+  
+  manual_ip:
+    static_ip: 192.168.1.231
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Pmaxx81Hac 1 Fallback Hotspot"
+    password: !secret fallback_pass
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+dallas:
+  - pin: GPIO16
+  
+output:
+  - platform: ledc
+    pin: GPIO5
+    id: buzzer
+  
+sensor:
+  - platform: dallas
+    index: 0
+#    address: 0
+    name: "HAC1_TEMP"
+    
+  - platform: wifi_signal
+    name: "HAC1 WiFi Signal"
+    update_interval: 60s
+
+binary_sensor:
+
+##### ONBOARD BUTTONS #####
+
+  - platform: gpio
+    pin:
+      number: GPIO26
+      mode: INPUT_PULLUP
+    name: "HAC1_CH1_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_CH1_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO25
+      mode: INPUT_PULLUP
+    name: "HAC1_CH2_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer          
+    on_release:
+      then:  
+        - switch.toggle: HAC1_CH2_OUT
+    internal: true 
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO33
+      mode: INPUT_PULLUP
+    name: "HAC1_CH3_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_CH3_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO32
+      mode: INPUT_PULLUP
+    name: "HAC1_CH4_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_CH4_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO35
+      mode: INPUT #_PULLUP
+    name: "HAC1_CH5_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_CH5_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO34
+      mode: INPUT #_PULLUP
+    name: "HAC1_CH6_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_CH6_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO39
+      mode: INPUT #_PULLUP
+    name: "HAC1_CH7_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_CH7_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO36
+      mode: INPUT #_PULLUP
+    name: "HAC1_CH8_SW"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_CH8_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO17
+      mode: INPUT_PULLUP
+    name: "HAC1_SOFT_SW1"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_SOFTSW1_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+    name: "HAC1_SOFT_SW2"
+    on_press:
+      then:
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 1000Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%
+        - delay: 125ms  
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: 800Hz
+        - output.set_level:
+            id: buzzer
+            level: 60%  
+        - delay: 125ms 
+        - output.turn_off: buzzer  
+    on_release:
+      then:
+        - switch.toggle: HAC1_SOFTSW2_OUT
+    internal: true
+    filters:
+      invert:
+  - platform: gpio
+    pin:
+      number: GPIO12
+      mode: INPUT_PULLUP
+    name: "HAC1_SOFT_SW3"
+    on_press:
+      then:
+    on_release:
+      then:
+        - switch.toggle: HAC1_SOFTSW3_OUT
+    internal: true
+    filters:
+      invert:
+    
+switch:
+
+##### OUTPUT #####
+
+  - platform: gpio
+    name: "HAC1 Channel 1"
+    id: HAC1_CH1_OUT
+    pin: GPIO23
+  - platform: gpio
+    name: "HAC1 Channel 2"
+    id: HAC1_CH2_OUT
+    pin: GPIO22
+  - platform: gpio
+    name: "HAC1 Channel 3"
+    id: HAC1_CH3_OUT
+    pin: GPIO21
+  - platform: gpio
+    name: "HAC1 Channel 4"
+    id: HAC1_CH4_OUT
+    pin: GPIO19
+  - platform: gpio
+    name: "HAC1 Channel 5"
+    id: HAC1_CH5_OUT
+    pin: GPIO18
+  - platform: gpio
+    name: "HAC1 Channel 6"
+    id: HAC1_CH6_OUT
+    pin: GPIO4
+  - platform: gpio
+    name: "HAC1 Channel 7"
+    id: HAC1_CH7_OUT
+    pin: GPIO13
+  - platform: gpio
+    name: "HAC1 Channel 8"
+    id: HAC1_CH8_OUT
+    pin: GPIO27
+  - platform: gpio
+    name: "HAC1 Software Switch 1"
+    id: HAC1_SOFTSW1_OUT 
+    pin: GPIO2
+  - platform: gpio
+    name: "HAC1 Software Switch 2"
+    id: HAC1_SOFTSW2_OUT 
+    pin: GPIO15
+  - platform: template
+    name: "HAC1 Software Switch 3"
+    id: HAC1_SOFTSW3_OUT
+    turn_on_action:
+      - switch.template.publish:
+          id: HAC1_SOFTSW3_OUT
+          state: ON
+      - delay: 250ms
+      - output.ledc.set_frequency:
+          id: buzzer
+          frequency: 1000Hz
+      - output.set_level:
+          id: buzzer
+          level: 60%
+      - delay: 125ms  
+      - output.ledc.set_frequency:
+          id: buzzer
+          frequency: 800Hz
+      - output.set_level:
+          id: buzzer
+          level: 60%  
+      - delay: 125ms 
+      - output.ledc.set_frequency:
+          id: buzzer
+          frequency: 1200Hz
+      - output.set_level:
+          id: buzzer
+          level: 60%
+      - delay: 125ms 
+      - output.turn_off: buzzer  
+    turn_off_action:
+      - switch.template.publish:
+          id: HAC1_SOFTSW3_OUT
+          state: OFF 
+      - delay: 250ms  
+      - output.ledc.set_frequency:
+          id: buzzer
+          frequency: 1200Hz
+      - output.set_level:
+          id: buzzer
+          level: 60%
+      - delay: 125ms  
+      - output.ledc.set_frequency:
+          id: buzzer
+          frequency: 1000Hz
+      - output.set_level:
+          id: buzzer
+          level: 60%  
+      - delay: 125ms 
+      - output.ledc.set_frequency:
+          id: buzzer
+          frequency: 800Hz
+      - output.set_level:
+          id: buzzer
+          level: 60%
+      - delay: 125ms 
+      - output.turn_off: buzzer         
