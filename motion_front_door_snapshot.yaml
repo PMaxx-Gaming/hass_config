@@ -1,0 +1,14 @@
+- alias: 'MOTION - Front Door Snapshot'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_camera_motion
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_away
+  action:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.front_door_camera
+        filename: /config/www/cam_captures/frontdoor.jpg

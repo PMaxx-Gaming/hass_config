@@ -1,0 +1,20 @@
+- alias: 'MOTION - Front Door Light-ON'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_camera_motion
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: timer.5_seconds
+    state: 'idle' 
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon 
+  - condition: state
+    entity_id: switch.sonoff_1000a02089
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.fdl_auto
+  - service: switch.turn_on
+    entity_id: switch.sonoff_1000a02089

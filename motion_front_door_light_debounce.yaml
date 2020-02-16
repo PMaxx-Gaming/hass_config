@@ -1,0 +1,12 @@
+- alias: 'MOTION - Front Door Light Debounce Timer'
+  trigger:
+  - platform: state
+    entity_id: switch.sonoff_1000a02089
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: timer.5_seconds
+    state: 'idle'
+  action:
+  - service: timer.start
+    entity_id: timer.5_seconds

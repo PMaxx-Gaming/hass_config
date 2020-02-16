@@ -1,0 +1,10 @@
+- alias: 'LIGHT - Front Door-OFF' 
+  trigger:
+  - platform: state
+    entity_id: switch.sonoff_1000a02089
+    to: 'off'
+  action:
+  - service: input_boolean.turn_off 
+    entity_id: input_boolean.fdl_manual
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.fdl_auto

@@ -1,0 +1,19 @@
+- alias: 'MOTION - Front Door Light-OFF after 5 minutes'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_camera_motion
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+  - condition: state
+    entity_id: switch.sonoff_1000a02089
+    state: 'on' 
+  - condition: state
+    entity_id: input_boolean.fdl_manual
+    state: 'off'
+  action:
+  - service: timer.start
+    entity_id: timer.5_seconds
+  - service: switch.turn_off
+    entity_id: switch.sonoff_1000a02089
