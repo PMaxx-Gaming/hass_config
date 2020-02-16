@@ -1,0 +1,55 @@
+- alias: 'MOTION - Turn off Nursery light 10 minutes after last movement'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.nursery_motion
+    to: 'off'
+    for:
+      minutes: 10
+  action:
+    service: light.turn_off
+    entity_id: light.nursery
+ 
+- alias: 'MOTION - Nursery at night'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.nursery_motion
+      to: 'on'
+  condition:
+  - condition: time
+    after: '20:00:00'
+    before: '06:59:59'
+  - condition: state
+    entity_id: light.nursery
+    state: 'off'
+  action:
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Nursery"
+        scene_name: "Nightlight"
+    - delay: '00:00:15'    
+ 
+- alias: 'MOTION - Nursery during day'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.nursery_motion
+      to: 'on'
+  condition:
+  - condition: time
+    after: '07:00:00'
+    before: '19:59:59'
+  - condition: state
+    entity_id: light.nursery
+    state: 'off'
+  action:
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Nursery"
+        scene_name: "Bright" 
+    - service: notify.alexa_media
+      data_template:
+        target:
+          - media_player.nursery
+        data:
+          type: tts
+        message: Hello there
+    - delay: '00:00:15' 
